@@ -6,6 +6,7 @@
 <title>Living Mandalas</title>
 <meta name="description" content="A family of interactive mandalas for growing, healing, and coming home: The Pregnancy and Birth Mandala, The Return Mandala, and The Window Mandala.">
 <link rel="icon" href="favicon.svg" type="image/svg+xml">
+<script>try{ var t=localStorage.getItem("lm-theme"); if(t==="light"||t==="dark") document.documentElement.setAttribute("data-theme",t); }catch(e){}</script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Mulish:wght@400;600;700&display=swap">
@@ -27,7 +28,13 @@
   --coral:#EE9A86; --plum:#BFA3E4; --sun:#E8C46C; color-scheme:dark }
 *{box-sizing:border-box}
 body{margin:0;background:radial-gradient(ellipse at 50% 0%, color-mix(in srgb, var(--glow) 55%, var(--bg)) 0%, var(--bg) 62%) no-repeat, var(--bg);color:var(--ink);font-family:var(--body);font-size:16px;line-height:1.6;min-height:100vh}
-.wrap{max-width:1160px;margin:0 auto;padding:56px 24px 40px}
+.wrap{max-width:1160px;margin:0 auto;padding:56px 24px 40px;position:relative}
+.themebtn{position:absolute;top:18px;right:24px;width:40px;height:40px;display:grid;place-items:center;border:1px solid var(--line);border-radius:50%;background:var(--surface);color:var(--ink);cursor:pointer;padding:0}
+.themebtn:hover{background:var(--bg)}
+.themebtn:focus-visible{outline:2px solid var(--ink);outline-offset:2px}
+.themebtn svg{width:20px;height:20px;overflow:visible}
+.themebtn .sun{display:none} .is-dark .themebtn .moon{display:none} .is-dark .themebtn .sun{display:block}
+.art .dk{display:none} .is-dark .art .dk{display:block} .is-dark .art .lt{display:none}
 header{text-align:center;max-width:680px;margin:0 auto 44px}
 .emblem{width:64px;height:64px;display:block;margin:0 auto 14px}
 .eyebrow{font-size:12px;letter-spacing:.16em;text-transform:uppercase;color:var(--muted);font-weight:700}
@@ -51,11 +58,15 @@ footer{text-align:center;color:var(--muted);font-size:13.5px;margin:48px auto 0;
 @media (prefers-color-scheme: dark){ :root:not([data-theme="light"]) .card{--tint:var(--tint-d,var(--gold))} }
 :root[data-theme="dark"] .card{--tint:var(--tint-d,var(--gold))}
 @media (prefers-reduced-motion: reduce){ .card,.art img,.go svg{transition:none} .card:hover,.card:focus-visible{transform:none} .card:hover .art img{transform:none} }
-@media (max-width:520px){ .wrap{padding:36px 16px 28px} header{margin-bottom:30px} .card{padding:22px 18px 20px} .art{max-width:260px} }
+@media (max-width:520px){ .themebtn{top:12px;right:16px} .wrap{padding:60px 16px 28px} header{margin-bottom:30px} .card{padding:22px 18px 20px} .art{max-width:260px} }
 </style>
 </head>
 <body>
 <div class="wrap">
+  <button class="themebtn" type="button" id="themebtn" aria-label="Switch to dark mode">
+    <svg class="sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="4.2"/><path d="M12 2.5v2.2M12 19.3v2.2M2.5 12h2.2M19.3 12h2.2M5.3 5.3l1.6 1.6M17.1 17.1l1.6 1.6M5.3 18.7l1.6-1.6M17.1 6.9l1.6-1.6"/></svg>
+    <svg class="moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round" aria-hidden="true"><path d="M20 14.5A8 8 0 0 1 9.5 4a8 8 0 1 0 10.5 10.5z"/></svg>
+  </button>
   <header>
     <svg class="emblem" viewBox="-20 -20 40 40" aria-hidden="true"><g fill="none" stroke-width="1.1"><circle r="6" stroke="var(--gold)"/><circle cx="0" cy="-6" r="6" stroke="var(--coral)"/><circle cx="5.2" cy="-3" r="6" stroke="var(--plum)"/><circle cx="5.2" cy="3" r="6" stroke="var(--gold)"/><circle cx="0" cy="6" r="6" stroke="var(--coral)"/><circle cx="-5.2" cy="3" r="6" stroke="var(--plum)"/><circle cx="-5.2" cy="-3" r="6" stroke="var(--gold)"/><circle r="12.6" stroke="var(--gold)" stroke-opacity=".6"/><circle r="17" stroke="var(--gold)" stroke-opacity=".3" stroke-dasharray="1.5 2.5"/></g></svg>
     <div class="eyebrow">A family of maps</div>
@@ -69,27 +80,38 @@ footer{text-align:center;color:var(--muted);font-size:13.5px;margin:48px auto 0;
   <footer>Each mandala is offered for reflection and education, not diagnosis or therapy.</footer>
 </div>
 <script>
-// Every mandala in the family. To add one: put a round 800px image in img/, and add an entry here.
+// Every mandala in the family. To add one: put round 800px images of its wheel, light and dark, in img/, and add an
+// entry here. themeKey is the key the mandala keeps its light or dark choice under, so the switch here carries over.
 // tint is the card's accent: a colour from the mandala's own palette, as [light mode, dark mode].
 const MANDALAS=[
-  {name:"The Pregnancy and Birth Mandala", href:"https://erinsarita.github.io/prenatal-mandala/", img:"img/pregnancy-birth.webp",
+  {name:"The Pregnancy and Birth Mandala", href:"https://erinsarita.github.io/prenatal-mandala/", img:"img/pregnancy-birth.webp", imgDark:"img/pregnancy-birth-dark.webp", themeKey:"pm-theme",
    eyebrow:"Prenatal and perinatal education", tint:["#C9604A","#EE9A86"],
    text:"A teaching map of pregnancy and birth, from the center out: the child, the mother, her circle of support, the educator, and practices for connecting with the baby and for healing.",
    alt:"Coral petals around a Seed of Life, ringed by the forty weeks, birth, and the first hour"},
-  {name:"The Return Mandala", href:"https://erinsarita.github.io/return-mandala/", img:"img/return.webp",
+  {name:"The Return Mandala", href:"https://erinsarita.github.io/return-mandala/", img:"img/return.webp", imgDark:"img/return-dark.webp", themeKey:"rm-theme",
    eyebrow:"Prenatal and perinatal healing", tint:["#6E4E92","#BFA3E4"],
    text:"A map for returning to your own earliest story: the child you were at the center, the seven rights of growing up around them, and what heals each one in you now.",
    alt:"Plum petals around a Seed of Life, ringed by the seven rights of growing up"},
-  {name:"The Window Mandala", href:"https://erinsarita.github.io/window-mandala/", img:"img/window.webp",
+  {name:"The Window Mandala", href:"https://erinsarita.github.io/window-mandala/", img:"img/window.webp", imgDark:"img/window-dark.webp", themeKey:"wm-theme",
    eyebrow:"The nervous system and the Self", tint:["#A8771E","#E8C46C"],
    text:"A map of the window of capacity with the Self at its center, weaving together polyvagal theory, the heart-brain loop, Internal Family Systems, and awareness, with ways back home.",
    alt:"A golden Self with eight petals at the center, ringed by the window of capacity and the four survival states"}
 ];
 const arrow=`<svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 8h9M8.5 4.5 12 8l-3.5 3.5"/></svg>`;
 document.getElementById("grid").innerHTML=MANDALAS.map(m=>`<li><a class="card" href="${m.href}" style="--tint-l:${m.tint[0]};--tint-d:${m.tint[1]}">
-  <div class="art"><img src="${m.img}" width="800" height="800" alt="${m.name}: ${m.alt}"></div>
+  <div class="art"><img class="lt" src="${m.img}" width="800" height="800" alt="${m.name}: ${m.alt}"><img class="dk" src="${m.imgDark}" width="800" height="800" alt="${m.name}: ${m.alt}" loading="lazy"></div>
   <div class="eyebrow">${m.eyebrow}</div><h2>${m.name}</h2><p>${m.text}</p>
   <span class="go">Enter the mandala ${arrow}</span></a></li>`).join("");
+// light and dark: follows the system until chosen here; the choice is shared with every mandala, which all live
+// on this same site, so each one opens in the same mode
+const root=document.documentElement, tbtn=document.getElementById("themebtn"), sysDark=window.matchMedia("(prefers-color-scheme: dark)");
+function isDark(){ const t=root.getAttribute("data-theme"); return t ? t==="dark" : sysDark.matches; }
+function syncTheme(){ const d=isDark(); root.classList.toggle("is-dark",d); tbtn.setAttribute("aria-label", d?"Switch to light mode":"Switch to dark mode"); tbtn.title=d?"Light mode":"Dark mode"; }
+tbtn.addEventListener("click",()=>{ const next=isDark()?"light":"dark"; root.setAttribute("data-theme",next);
+  try{ localStorage.setItem("lm-theme",next); MANDALAS.forEach(m=>{ if(m.themeKey) localStorage.setItem(m.themeKey,next); }); }catch(e){}
+  syncTheme(); });
+sysDark.addEventListener("change",syncTheme);
+syncTheme();
 </script>
 </body>
 </html>
