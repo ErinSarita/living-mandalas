@@ -1,0 +1,95 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Living Mandalas</title>
+<meta name="description" content="A family of interactive mandalas for growing, healing, and coming home: The Pregnancy and Birth Mandala, The Return Mandala, and The Window Mandala.">
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Mulish:wght@400;600;700&display=swap">
+<style>
+:root{
+  --bg:#F8F4EC; --surface:#FFFFFF; --ink:#2C2433; --muted:#6F6578; --line:#E8DFD3;
+  --gold:#B98428; --glow:#FFF3BD;
+  --coral:#C9604A; --plum:#6E4E92; --sun:#A8771E;
+  --display:"Cormorant Garamond", "Cormorant", Georgia, serif;
+  --body:"Mulish", "Avenir Next", "Segoe UI", system-ui, sans-serif;
+}
+@media (prefers-color-scheme: dark){ :root:not([data-theme="light"]){
+  --bg:#16131D; --surface:#1F1B28; --ink:#EFE9F3; --muted:#ADA3B8; --line:#352E42;
+  --gold:#D6A645; --glow:#3A2F22;
+  --coral:#EE9A86; --plum:#BFA3E4; --sun:#E8C46C; color-scheme:dark }}
+:root[data-theme="dark"]{
+  --bg:#16131D; --surface:#1F1B28; --ink:#EFE9F3; --muted:#ADA3B8; --line:#352E42;
+  --gold:#D6A645; --glow:#3A2F22;
+  --coral:#EE9A86; --plum:#BFA3E4; --sun:#E8C46C; color-scheme:dark }
+*{box-sizing:border-box}
+body{margin:0;background:radial-gradient(ellipse at 50% 0%, color-mix(in srgb, var(--glow) 55%, var(--bg)) 0%, var(--bg) 62%) no-repeat, var(--bg);color:var(--ink);font-family:var(--body);font-size:16px;line-height:1.6;min-height:100vh}
+.wrap{max-width:1160px;margin:0 auto;padding:56px 24px 40px}
+header{text-align:center;max-width:680px;margin:0 auto 44px}
+.emblem{width:64px;height:64px;display:block;margin:0 auto 14px}
+.eyebrow{font-size:12px;letter-spacing:.16em;text-transform:uppercase;color:var(--muted);font-weight:700}
+h1{font-family:var(--display);font-weight:500;font-size:clamp(42px,7vw,68px);line-height:1.02;margin:6px 0 14px;letter-spacing:.01em}
+.lede{color:var(--muted);font-size:17px;margin:0 auto;max-width:58ch;text-wrap:pretty}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:24px;list-style:none;margin:0;padding:0}
+.card{--tint:var(--tint-l,var(--gold));display:flex;flex-direction:column;height:100%;text-decoration:none;color:inherit;background:var(--surface);border:1px solid var(--line);border-radius:22px;padding:26px 24px 24px;transition:transform .3s ease,box-shadow .3s ease,border-color .3s ease}
+.card:hover,.card:focus-visible{transform:translateY(-3px);border-color:color-mix(in srgb, var(--tint) 45%, var(--line));box-shadow:0 18px 40px -22px color-mix(in srgb, var(--tint) 70%, transparent)}
+.card:focus-visible{outline:2px solid var(--tint);outline-offset:3px}
+.art{position:relative;width:100%;max-width:300px;aspect-ratio:1;margin:0 auto 22px}
+.art::before{content:"";position:absolute;inset:-6%;border-radius:50%;background:radial-gradient(circle, color-mix(in srgb, var(--tint) 22%, transparent) 0%, transparent 68%)}
+.art img{position:relative;width:100%;height:100%;display:block;border-radius:50%;transition:transform .5s ease}
+.card:hover .art img{transform:scale(1.025)}
+.card .eyebrow{color:var(--tint)}
+h2{font-family:var(--display);font-weight:500;font-size:31px;line-height:1.1;margin:4px 0 8px}
+.card p{margin:0 0 18px;color:var(--muted);font-size:15.5px;text-wrap:pretty}
+.go{margin-top:auto;font-weight:700;font-size:14.5px;color:var(--tint);display:inline-flex;align-items:center;gap:6px}
+.go svg{width:16px;height:16px;transition:transform .3s ease}
+.card:hover .go svg{transform:translateX(3px)}
+footer{text-align:center;color:var(--muted);font-size:13.5px;margin:48px auto 0;max-width:60ch}
+@media (prefers-color-scheme: dark){ :root:not([data-theme="light"]) .card{--tint:var(--tint-d,var(--gold))} }
+:root[data-theme="dark"] .card{--tint:var(--tint-d,var(--gold))}
+@media (prefers-reduced-motion: reduce){ .card,.art img,.go svg{transition:none} .card:hover,.card:focus-visible{transform:none} .card:hover .art img{transform:none} }
+@media (max-width:520px){ .wrap{padding:36px 16px 28px} header{margin-bottom:30px} .card{padding:22px 18px 20px} .art{max-width:260px} }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <svg class="emblem" viewBox="-20 -20 40 40" aria-hidden="true"><g fill="none" stroke-width="1.1"><circle r="6" stroke="var(--gold)"/><circle cx="0" cy="-6" r="6" stroke="var(--coral)"/><circle cx="5.2" cy="-3" r="6" stroke="var(--plum)"/><circle cx="5.2" cy="3" r="6" stroke="var(--gold)"/><circle cx="0" cy="6" r="6" stroke="var(--coral)"/><circle cx="-5.2" cy="3" r="6" stroke="var(--plum)"/><circle cx="-5.2" cy="-3" r="6" stroke="var(--gold)"/><circle r="12.6" stroke="var(--gold)" stroke-opacity=".6"/><circle r="17" stroke="var(--gold)" stroke-opacity=".3" stroke-dasharray="1.5 2.5"/></g></svg>
+    <div class="eyebrow">A family of maps</div>
+    <h1>Living Mandalas</h1>
+    <p class="lede">Interactive maps for growing, healing, and coming home. Each is read from the center out, and each is a doorway into the others. The circle is still growing: new mandalas join here as they are made.</p>
+  </header>
+
+  <ul class="grid" id="grid"></ul>
+  <noscript><ul class="grid"><li><a class="card" href="https://erinsarita.github.io/prenatal-mandala/"><h2>The Pregnancy and Birth Mandala</h2></a></li><li><a class="card" href="https://erinsarita.github.io/return-mandala/"><h2>The Return Mandala</h2></a></li><li><a class="card" href="https://erinsarita.github.io/window-mandala/"><h2>The Window Mandala</h2></a></li></ul></noscript>
+
+  <footer>Each mandala is offered for reflection and education, not diagnosis or therapy.</footer>
+</div>
+<script>
+// Every mandala in the family. To add one: put a round 800px image in img/, and add an entry here.
+// tint is the card's accent: a colour from the mandala's own palette, as [light mode, dark mode].
+const MANDALAS=[
+  {name:"The Pregnancy and Birth Mandala", href:"https://erinsarita.github.io/prenatal-mandala/", img:"img/pregnancy-birth.webp",
+   eyebrow:"Prenatal and perinatal education", tint:["#C9604A","#EE9A86"],
+   text:"A teaching map of pregnancy and birth, from the center out: the child, the mother, her circle of support, the educator, and practices for connecting with the baby and for healing.",
+   alt:"Coral petals around a Seed of Life, ringed by the forty weeks, birth, and the first hour"},
+  {name:"The Return Mandala", href:"https://erinsarita.github.io/return-mandala/", img:"img/return.webp",
+   eyebrow:"Prenatal and perinatal healing", tint:["#6E4E92","#BFA3E4"],
+   text:"A map for returning to your own earliest story: the child you were at the center, the seven rights of growing up around them, and what heals each one in you now.",
+   alt:"Plum petals around a Seed of Life, ringed by the seven rights of growing up"},
+  {name:"The Window Mandala", href:"https://erinsarita.github.io/window-mandala/", img:"img/window.webp",
+   eyebrow:"The nervous system and the Self", tint:["#A8771E","#E8C46C"],
+   text:"A map of the window of capacity with the Self at its center, weaving together polyvagal theory, the heart-brain loop, Internal Family Systems, and awareness, with ways back home.",
+   alt:"A golden Self with eight petals at the center, ringed by the window of capacity and the four survival states"}
+];
+const arrow=`<svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 8h9M8.5 4.5 12 8l-3.5 3.5"/></svg>`;
+document.getElementById("grid").innerHTML=MANDALAS.map(m=>`<li><a class="card" href="${m.href}" style="--tint-l:${m.tint[0]};--tint-d:${m.tint[1]}">
+  <div class="art"><img src="${m.img}" width="800" height="800" alt="${m.name}: ${m.alt}"></div>
+  <div class="eyebrow">${m.eyebrow}</div><h2>${m.name}</h2><p>${m.text}</p>
+  <span class="go">Enter the mandala ${arrow}</span></a></li>`).join("");
+</script>
+</body>
+</html>
