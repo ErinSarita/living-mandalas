@@ -40,7 +40,10 @@ header{text-align:center;max-width:680px;margin:0 auto 44px}
 .eyebrow{font-size:12px;letter-spacing:.16em;text-transform:uppercase;color:var(--muted);font-weight:700}
 h1{font-family:var(--display);font-weight:500;font-size:clamp(42px,7vw,68px);line-height:1.02;margin:6px 0 14px;letter-spacing:.01em}
 .lede{color:var(--muted);font-size:17px;margin:0 auto;max-width:58ch;text-wrap:pretty}
-.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:24px;list-style:none;margin:0;padding:0}
+/* up to three across, every card the same width, and a short last row centered */
+.grid{display:flex;flex-wrap:wrap;justify-content:center;gap:24px;list-style:none;margin:0;padding:0}
+.grid>li{flex:0 1 calc((100% - 48px)/3);min-width:280px}
+@media (max-width:640px){.grid>li{flex-basis:100%}}
 .card{--tint:var(--tint-l,var(--gold));display:flex;flex-direction:column;height:100%;text-decoration:none;color:inherit;background:var(--surface);border:1px solid var(--line);border-radius:22px;padding:26px 24px 24px;transition:transform .3s ease,box-shadow .3s ease,border-color .3s ease}
 .card:hover,.card:focus-visible{transform:translateY(-3px);border-color:color-mix(in srgb, var(--tint) 45%, var(--line));box-shadow:0 18px 40px -22px color-mix(in srgb, var(--tint) 70%, transparent)}
 .card:focus-visible{outline:2px solid var(--tint);outline-offset:3px}
@@ -88,6 +91,10 @@ const MANDALAS=[
    eyebrow:"Prenatal and perinatal education", tint:["#C9604A","#EE9A86"],
    text:"A teaching map of pregnancy and birth, from the center out: the child, the mother, her circle of support, the educator, and practices for connecting with the baby and for healing.",
    alt:"Coral petals around a Seed of Life, ringed by the forty weeks, birth, and the first hour"},
+  {name:"The Fourth Trimester Mandala", href:"https://erinsarita.github.io/fourth-trimester-mandala/", img:"img/fourth-trimester.webp", imgDark:"img/fourth-trimester-dark.webp", themeKey:"ft-theme",
+   eyebrow:"The fourth trimester", tint:["#B85E6E","#F0BCAB"],
+   text:"A teaching map of the first twelve weeks after birth, from the center out: mother and baby as one, the partner and circle who hold them, and best practices from the first hour through the first months.",
+   alt:"A golden dyad of two overlapping circles at the center, warming through blush and rose petals, ringed by the first hour, the first days, and the first months"},
   {name:"The Return Mandala", href:"https://erinsarita.github.io/return-mandala/", img:"img/return.webp", imgDark:"img/return-dark.webp", themeKey:"rm-theme",
    eyebrow:"Prenatal and perinatal healing", tint:["#6E4E92","#BFA3E4"],
    text:"A map for returning to your own earliest story: the child you were at the center, the seven rights of growing up around them, and what heals each one in you now.",

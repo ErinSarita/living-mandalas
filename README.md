@@ -1,6 +1,6 @@
 # Living Mandalas
 
-The home page for a growing family of interactive mandalas: The Pregnancy and Birth Mandala, The Return Mandala, and The Window Mandala.
+The home page for a growing family of interactive mandalas: The Pregnancy and Birth Mandala, The Fourth Trimester Mandala, The Return Mandala, and The Window Mandala.
 
 A single static page (`index.html`). The cards are built from the `MANDALAS` list near the bottom of the file.
 
@@ -11,6 +11,6 @@ A single static page (`index.html`). The cards are built from the `MANDALAS` lis
 
 ## Light and dark
 
-The page follows the system until the switch is used. The switch saves the choice as `lm-theme`, and also under every mandala's `themeKey` (`pm-theme`, `rm-theme`, `wm-theme`). They all share one site, erinsarita.github.io, so each mandala opens in the same mode.
+The page follows the system until the switch is used. The switch saves the choice as `lm-theme`, and also under every mandala's `themeKey` (`pm-theme`, `ft-theme`, `rm-theme`, `wm-theme`). They all share one site, erinsarita.github.io, so each mandala opens in the same mode.
 
 The grid fits as many as there are, up to three across.
