@@ -102,7 +102,11 @@ const MANDALAS=[
   {name:"The Window Mandala", href:"https://erinsarita.github.io/window-mandala/", img:"img/window.webp", imgDark:"img/window-dark.webp", themeKey:"wm-theme",
    eyebrow:"The nervous system and its rhythms", tint:["#A8771E","#E8C46C"],
    text:"A map of the nervous system: coherence of mind, heart, and body at the center, the window of capacity around it, and the ring of survival beyond, with two dials for where you live and where you are, and ways back home.",
-   alt:"A glowing center of coherence, ringed by the window of capacity and the ring of survival, with four petals of the way back laid over it, and a braid with golden rays"}
+   alt:"A glowing center of coherence, ringed by the window of capacity and the ring of survival, with four petals of the way back laid over it, and a braid with golden rays"},
+  {name:"The Body Clock Mandala", href:"https://erinsarita.github.io/tcm-mandala/", img:"img/body-clock.webp", imgDark:"img/body-clock-dark.webp", themeKey:"tcm-theme",
+   eyebrow:"Traditional Chinese Medicine", tint:["#3F7C5A","#8FBFA0"],
+   text:"A map of the day as Traditional Chinese Medicine describes it: qi and yin-yang at the center, the Five Phases, the twelve organ hours around the clock, and the four seasons the day turns through, from spring at dawn to winter at midnight.",
+   alt:"A yin-yang at the center, ringed by the Five Phases, twelve organ hours in green, red, gold, silver, and blue, and the four seasons of the day"}
 ];
 const arrow=`<svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 8h9M8.5 4.5 12 8l-3.5 3.5"/></svg>`;
 document.getElementById("grid").innerHTML=MANDALAS.map(m=>`<li><a class="card" href="${m.href}" style="--tint-l:${m.tint[0]};--tint-d:${m.tint[1]}">
