@@ -106,7 +106,11 @@ const MANDALAS=[
   {name:"The Body Clock Mandala", href:"https://erinsarita.github.io/tcm-mandala/", img:"img/body-clock.webp", imgDark:"img/body-clock-dark.webp", themeKey:"tcm-theme",
    eyebrow:"Traditional Chinese Medicine", tint:["#3F7C5A","#8FBFA0"],
    text:"Three wheels for Traditional Chinese Medicine. The Phases wheel goes to the roots, from Wuji and yin and yang to the Five Phases, their correspondences, the cycles that feed and tame them, and the qualities that bring balance. The Day wheel is the body clock of the twelve organ hours, and the Year wheel is the Five Phases in their five seasons.",
-   alt:"Wuji and a swirl of yin and yang at the center, with the Five Phases spaced evenly around it, joined by arrows around the circle and a star across it, ringed by their seasons, organs, tastes, and feelings"}
+   alt:"Wuji and a swirl of yin and yang at the center, with the Five Phases spaced evenly around it, joined by arrows around the circle and a star across it, ringed by their seasons, organs, tastes, and feelings"},
+  {name:"The Healing Modalities Mandala", href:"https://erinsarita.github.io/healing-mandala/", img:"img/healing.webp", imgDark:"img/healing-dark.webp", themeKey:"hm-theme",
+   eyebrow:"Prenatal and perinatal healing", tint:["#6E8B57","#A9C391"],
+   text:"A teaching map of the twenty healing modalities from Module 12: what each one is, who it serves, when in life it fits, what a family can explore on their own, and when to refer to a trained practitioner.",
+   alt:"Twenty petals in soft greens and warm neutrals around a Seed of Life with a rainbow center, ringed by six pastel rings for the stages of life and a band naming seven types"}
 ];
 const arrow=`<svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 8h9M8.5 4.5 12 8l-3.5 3.5"/></svg>`;
 document.getElementById("grid").innerHTML=MANDALAS.map(m=>`<li><a class="card" href="${m.href}" style="--tint-l:${m.tint[0]};--tint-d:${m.tint[1]}">
